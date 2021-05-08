@@ -2,9 +2,10 @@ name: Build All
 
 on:
   push:
-    paths-ignore:
-      - 'docker/Dockerfile'
-      - '.github/workflows/**'
+    paths:
+      - '**'
+      - '!docker/Dockerfile'
+      - '!.github/workflows/build_builder_image.yaml'
 
 jobs:
   push_to_registry:
@@ -14,9 +15,11 @@ jobs:
       packages: write
       contents: read
     steps:
-      - name: Check out
+      -
+        name: Check out
         uses: actions/checkout@v2
-      - name: Build all
+      -
+        name: Build all
         uses: addnab/docker-run-action@v3
         with:
           registry: ghcr.io
