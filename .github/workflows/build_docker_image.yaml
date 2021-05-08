@@ -13,14 +13,19 @@ jobs:
       packages: write
       contents: read
     steps:
-      - name: Check out
+      -
+        name: Check out
         uses: actions/checkout@v2
-      - name: Build and Push
+      -
+        name: Build and push
         id: docker_build
         uses: mr-smithers-excellent/docker-build-push@v5
         with:
-          image: vcxsrv
           registry: ghcr.io
-          username: ${{ secrets.GHCR_USERNAME }}
-          password: ${{ secrets.GHCR_TOKEN }}
+          username: ${{ github.repository_owner }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+          image: vcxb
           dockerfile: docker/Dockerfile
+      -
+        name: Image digest
+        run: echo ${{ steps.docker_build.outputs.digest }}
