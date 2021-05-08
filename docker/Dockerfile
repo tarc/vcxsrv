@@ -14,7 +14,7 @@
 #	This also results in a 32GB docker image
 
 # Use the Long-Term Support Channel Windows Server Core image
-FROM mcr.microsoft.com/windows/servercore:ltsc2019
+FROM ghcr.io/tarc/buildtools2019native:master-0eaffc9
 SHELL ["cmd", "/S", "/C"]
 
 # Install VS 2019 community
@@ -77,7 +77,7 @@ RUN choco install python3 -y \
 	&& C:\Python39\Scripts\pip install mako \
 	&& popd \
 	&& del c:\programdata\chocolatey\lib\python3\*.nupkg \
-	&& setx /m path "%path%;C:\Python39
+	&& setx /m path "%path%;C:\Python39"
 
 #Install git
 RUN choco install -y git \
