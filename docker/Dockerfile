@@ -88,8 +88,8 @@ RUN choco install -y git \
 	&& del c:\programdata\chocolatey\lib\git.install\*.nupkg
 
 # Launch VS2019 developer command prompt when started
-ENTRYPOINT C:\BuildTools\Common7\Tools\VsDevCmd.bat &&
-CMD ["powershell.exe", "-NoLogo", "-ExecutionPolicy", "Bypass"]
+SHELL ["cmd", "/S", "/K"]
+ENTRYPOINT C:\BuildTools\Common7\Tools\VsDevCmd.bat
 
 # Launch with docker run -m 4G -v:<VcXSrvGit>:c:\src -it <ContainerName>
 # Once inside:
