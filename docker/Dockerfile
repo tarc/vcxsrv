@@ -73,7 +73,6 @@ RUN choco install python3 -y \
 	&& rd /s /q C:\Users\ContainerAdministrator\AppData\Local\Temp \
 	&& mkdir C:\Users\ContainerAdministrator\AppData\Local\Temp \
 	&& pushd c:\python39 \
-	&& C:\Python39\Scripts\pip wheel https://download.lfd.uci.edu/pythonlibs/z4tqcw5k/lxml-4.6.2-cp39-cp39-win_amd64.whl \
 	&& C:\Python39\Scripts\pip install lxml \
 	&& C:\Python39\Scripts\pip install mako \
 	&& popd \
