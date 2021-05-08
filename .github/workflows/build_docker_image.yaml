@@ -1,0 +1,26 @@
+name: Build Docker Image
+
+on:
+  push:
+    branches:
+      - 'feature/add-github-actions'
+
+jobs:
+  push_to_registry:
+    name: Build and push Docker image to GitHub packages
+    runs-on: windows-latest
+    permissions:
+      packages: write
+      contents: read
+    steps:
+      - name: Check out
+        uses: actions/checkout@v2
+      - name: Build and Push
+        id: docker_build
+        uses: mr-smithers-excellent/docker-build-push@v5
+        with:
+          image: vcxsrv
+          registry: ghcr.io
+          username: ${{ secrets.GHCR_USERNAME }}
+          password: ${{ secrets.GHCR_TOKEN }}
+          dockerfile: docker/Dockerfile
