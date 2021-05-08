@@ -14,7 +14,7 @@
 #	This also results in a 32GB docker image
 
 # Use the Long-Term Support Channel Windows Server Core image
-FROM ghcr.io/tarc/buildtools2019native:master-0eaffc9
+FROM ghcr.io/tarc/buildtools2019native:latest
 SHELL ["cmd", "/S", "/C"]
 
 # Install VS 2019 community
@@ -87,9 +87,9 @@ RUN choco install -y git \
 	&& git config --global core.autocrlf false \
 	&& del c:\programdata\chocolatey\lib\git.install\*.nupkg
 
-# Launch VS2017 developer command prompt when started
-SHELL ["cmd", "/S", "/K"]
-ENTRYPOINT ""C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Community\\VC\\Auxiliary\\Build\vcvars64.bat""
+# Launch VS2019 developer command prompt when started
+ENTRYPOINT C:\BuildTools\Common7\Tools\VsDevCmd.bat &&
+CMD ["powershell.exe", "-NoLogo", "-ExecutionPolicy", "Bypass"]
 
 # Launch with docker run -m 4G -v:<VcXSrvGit>:c:\src -it <ContainerName>
 # Once inside:
