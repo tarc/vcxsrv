@@ -26,6 +26,3 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
           image: vcxb
           dockerfile: docker/Dockerfile
-      -
-        name: Image digest
-        run: echo ${{ steps.docker_build.outputs.digest }}
